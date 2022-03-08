@@ -6,7 +6,7 @@ import Results from 'pages/Results';
 const Routing = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="images" element={<Results />} />
+    <Route path="images/:key" element={<Results />} />
   </Routes>
 );
 

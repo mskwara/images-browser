@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
+import { useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
+import _noop from 'lodash/noop';
+import _isEmpty from 'lodash/isEmpty';
 import MUIAutocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import CircularProgress from '@mui/material/CircularProgress';
+import { getOptions, getOptionLabel } from './utils';
+import messages from './messages';
 
-const Autocomplete = ({ options, label }) => {
+const Autocomplete = ({
+  options,
+  label,
+  name,
+  minLengthToSearch,
+  onChange,
+}) => {
   const [open, setOpen] = useState(false);
-  const loading = open && options.length === 0;
+  const { values, setFieldValue, errors, submitForm } = useFormikContext();
+
+  const noOptionsText =
+    values[name].length >= minLengthToSearch
+      ? messages.noOptions
+      : messages.encourageText;
 
   return (
     <MUIAutocomplete
@@ -19,23 +34,31 @@ const Autocomplete = ({ options, label }) => {
         setOpen(false);
       }}
       isOptionEqualToValue={(option, value) => option.label === value.label}
-      getOptionLabel={(option) => option.label}
-      options={options}
-      loading={loading}
+      getOptionLabel={getOptionLabel}
+      filterOptions={(options) => options}
+      getOptionDisabled={(option) => option.id < 0}
+      freeSolo
+      options={getOptions(options, noOptionsText)}
+      onChange={(_, option, reason) => {
+        const value = getOptionLabel(option);
+        setFieldValue(name, value);
+        onChange({ target: { value } });
+
+        if (reason === 'selectOption') {
+          submitForm();
+        }
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
           label={label}
+          error={!_isEmpty(errors[name])}
+          onChange={(event) => {
+            setFieldValue(name, event.target.value);
+            onChange(event);
+          }}
           InputProps={{
             ...params.InputProps,
-            endAdornment: (
-              <>
-                {loading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
-                {params.InputProps.endAdornment}
-              </>
-            ),
           }}
         />
       )}
@@ -45,16 +68,21 @@ const Autocomplete = ({ options, label }) => {
 
 Autocomplete.propTypes = {
   label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.number,
       label: PropTypes.string,
     })
   ),
+  minLengthToSearch: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 Autocomplete.defaultProps = {
   options: [],
+  onChange: _noop,
+  minLengthToSearch: 0,
 };
 
 export default Autocomplete;
