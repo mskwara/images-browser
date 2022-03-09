@@ -5,6 +5,7 @@ import _noop from 'lodash/noop';
 import _isEmpty from 'lodash/isEmpty';
 import MUIAutocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import optionsShape from 'shapes/optionsShape';
 import { getOptions, getOptionLabel } from './utils';
 import messages from './messages';
 
@@ -76,12 +77,7 @@ const Autocomplete = ({
 Autocomplete.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.number,
-      label: PropTypes.string,
-    })
-  ),
+  options: optionsShape,
   minLengthToSearch: PropTypes.number,
   onChange: PropTypes.func,
 };
