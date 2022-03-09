@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@mui/system';
 
-const Header = ({ children }) => (
+const Header = ({ children, sx }) => (
   <Box
     sx={{
-      fontSize: 25,
+      fontSize: 35,
       margin: (theme) => theme.spacing(2, 0),
+      fontWeight: 'bold',
+      ...sx,
     }}
   >
     {children}
@@ -15,6 +17,11 @@ const Header = ({ children }) => (
 
 Header.propTypes = {
   children: PropTypes.node.isRequired,
+  sx: PropTypes.object,
+};
+
+Header.defaultProps = {
+  sx: {},
 };
 
 export default Header;
