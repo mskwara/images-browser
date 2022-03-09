@@ -5,9 +5,11 @@ import { Box } from '@mui/system';
 import Autocomplete from 'components/Autocomplete';
 import backgroundImage from 'assets/background.jpg';
 import useAutocompleteOptions from 'hooks/useAutocompleteOptions';
-import { MIN_LENGTH_TO_SEARCH, initialValues } from './consts';
+import { MIN_LENGTH_TO_SEARCH, initialValues, trendingItems } from './consts';
 import messages from './messages';
 import validationSchema from './validation';
+import Header from 'components/Header';
+import TextItemsList from 'components/TextItemsList';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -30,19 +32,35 @@ const Home = () => {
             height: '100vh',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
+            paddingTop: 5,
+            boxSizing: 'border-box',
           }}
         >
-          <Box sx={{ width: '50%', minWidth: 300 }}>
-            <Autocomplete
-              name="key"
-              options={options}
-              label={messages.autocompleteLabel}
-              onChange={onChange}
-              minLengthToSearch={MIN_LENGTH_TO_SEARCH}
-            />
+          <Box
+            sx={{
+              width: '50%',
+              minWidth: 300,
+              height: 'fit-content',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              color: (theme) => theme.palette.white,
+            }}
+          >
+            <Header>{messages.unsplash}</Header>
+            <Box>{messages.description}</Box>
+            <Box sx={{ width: '100%', margin: (theme) => theme.spacing(2, 0) }}>
+              <Autocomplete
+                name="key"
+                options={options}
+                label={messages.autocompleteLabel}
+                onChange={onChange}
+                minLengthToSearch={MIN_LENGTH_TO_SEARCH}
+              />
+            </Box>
+            <TextItemsList label={messages.trending} items={trendingItems} />
           </Box>
         </Box>
       </Form>

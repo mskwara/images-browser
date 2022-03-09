@@ -9,7 +9,7 @@ const Modal = ({ title, onClose, children }) => (
     sx={{
       width: 500,
       height: 'auto',
-      backgroundColor: (theme) => theme.palette.background,
+      backgroundColor: (theme) => theme.palette.white,
       borderRadius: 2,
       padding: 2,
     }}

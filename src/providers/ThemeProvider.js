@@ -4,7 +4,7 @@ import { ThemeProvider as MUIThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
   palette: {
-    background: '#fff',
+    white: '#fff',
   },
 });
 

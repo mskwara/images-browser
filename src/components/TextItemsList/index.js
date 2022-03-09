@@ -10,7 +10,7 @@ const TextItemsList = ({ label, items }) => (
       display: 'flex',
     }}
   >
-    <Box>{label}:</Box>
+    <Box sx={{ fontWeight: 'bold', marginRight: 0.5 }}>{label}:</Box>
     <Box>{_join(items, ', ')}</Box>
   </Box>
 );
