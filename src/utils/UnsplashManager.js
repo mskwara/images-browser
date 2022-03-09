@@ -6,8 +6,12 @@ const unsplash = createApi({
 });
 
 class UnsplashManager {
-  static getPhotos(key) {
+  static getPhotosList(key) {
     return unsplash.search.getPhotos({ query: key, page: 1, perPage: 10 });
+  }
+
+  static getPhoto(photoId) {
+    return unsplash.photos.get({ photoId });
   }
 }
 

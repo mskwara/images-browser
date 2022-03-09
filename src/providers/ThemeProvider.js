@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { ThemeProvider as MUIThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
-  background: '#fff',
+  palette: {
+    background: '#fff',
+  },
 });
 
 const ThemeProvider = ({ children }) => (

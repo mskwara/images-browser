@@ -62,7 +62,7 @@ const Autocomplete = ({
           }}
           InputProps={{
             ...params.InputProps,
-            sx: { backgroundColor: (theme) => theme.background },
+            sx: { backgroundColor: (theme) => theme.palette.background },
           }}
           InputLabelProps={{
             shrink: false,
