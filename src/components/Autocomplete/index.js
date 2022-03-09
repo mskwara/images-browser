@@ -18,8 +18,10 @@ const Autocomplete = ({
   const [open, setOpen] = useState(false);
   const { values, setFieldValue, errors, submitForm } = useFormikContext();
 
+  const value = values[name];
+
   const noOptionsText =
-    values[name].length >= minLengthToSearch
+    value.length >= minLengthToSearch
       ? messages.noOptions
       : messages.encourageText;
 
@@ -51,7 +53,8 @@ const Autocomplete = ({
       renderInput={(params) => (
         <TextField
           {...params}
-          label={label}
+          variant="outlined"
+          label={value.length === 0 ? label : ''}
           error={!_isEmpty(errors[name])}
           onChange={(event) => {
             setFieldValue(name, event.target.value);
@@ -59,6 +62,10 @@ const Autocomplete = ({
           }}
           InputProps={{
             ...params.InputProps,
+            sx: { backgroundColor: (theme) => theme.background },
+          }}
+          InputLabelProps={{
+            shrink: false,
           }}
         />
       )}
