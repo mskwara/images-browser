@@ -1,5 +1,5 @@
 const MIN_LENGTH_TO_SEARCH = 3;
-const trendingItems = ['flower', 'wallpapers', 'backgrounds', 'happy', 'love'];
+const trendingItems = ['animal', 'horse', 'dog'];
 
 const initialValues = {
   key: '',

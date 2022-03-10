@@ -4,19 +4,15 @@ import Routing from 'pages';
 import ThemeProvider from 'providers/ThemeProvider';
 import ModalProvider from 'providers/Modal';
 
-const App = () => {
+const App = () => (
   // eslint-disable-next-line no-undef
-  console.log(process.env.PUBLIC_URL);
-  return (
-    // eslint-disable-next-line no-undef
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <ThemeProvider>
-        <ModalProvider>
-          <Routing />
-        </ModalProvider>
-      </ThemeProvider>
-    </BrowserRouter>
-  );
-};
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <ThemeProvider>
+      <ModalProvider>
+        <Routing />
+      </ModalProvider>
+    </ThemeProvider>
+  </BrowserRouter>
+);
 
 export default App;

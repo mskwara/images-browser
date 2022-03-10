@@ -17,7 +17,7 @@ const Modal = ({ title, onClose, children }) => (
     <Box
       sx={{
         width: '100%',
-        height: 30,
+        minHeight: 30,
         display: 'flex',
         justifyContent: 'space-between',
       }}
