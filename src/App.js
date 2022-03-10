@@ -6,7 +6,8 @@ import ModalProvider from 'providers/Modal';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    // eslint-disable-next-line no-undef
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ThemeProvider>
         <ModalProvider>
           <Routing />
