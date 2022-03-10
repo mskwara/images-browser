@@ -16,7 +16,7 @@ const ResultsView = ({
   onSubmit,
   options,
   onChange,
-  keyValue,
+  title,
   photos,
   initialValues,
   onImageClick,
@@ -46,7 +46,7 @@ const ResultsView = ({
             minLengthToSearch={MIN_LENGTH_TO_SEARCH}
           />
         </Box>
-        <Header sx={{ alignSelf: 'flex-start' }}>{keyValue}</Header>
+        <Header sx={{ alignSelf: 'flex-start' }}>{title}</Header>
         <Box
           sx={{
             width: '100%',
@@ -71,7 +71,7 @@ const ResultsView = ({
 );
 
 ResultsView.propTypes = {
-  keyValue: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   initialValues: PropTypes.shape({
     key: PropTypes.string,
   }).isRequired,

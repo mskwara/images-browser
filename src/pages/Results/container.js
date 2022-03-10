@@ -61,7 +61,7 @@ const Results = () => {
       onChange={onChange}
       options={options}
       photos={photos}
-      keyValue={key}
+      title={key}
       initialValues={{ key }}
     />
   );
