@@ -30,17 +30,18 @@ const Autocomplete = ({
     <MUIAutocomplete
       sx={{ width: '100%' }}
       open={open}
+      value={value}
       onOpen={() => {
         setOpen(true);
       }}
       onClose={() => {
         setOpen(false);
       }}
-      isOptionEqualToValue={(option, value) => option.label === value.label}
+      freeSolo
+      isOptionEqualToValue={(option, val) => option.label === val.label}
       getOptionLabel={getOptionLabel}
       filterOptions={(options) => options}
       getOptionDisabled={(option) => option.id < 0}
-      freeSolo
       options={getOptions(options, noOptionsText)}
       onChange={(_, option, reason) => {
         const value = getOptionLabel(option);
