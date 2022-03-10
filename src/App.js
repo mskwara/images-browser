@@ -5,9 +5,11 @@ import ThemeProvider from 'providers/ThemeProvider';
 import ModalProvider from 'providers/Modal';
 
 const App = () => {
+  // eslint-disable-next-line no-undef
+  console.log(process.env.PUBLIC_URL);
   return (
     // eslint-disable-next-line no-undef
-    <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ThemeProvider>
         <ModalProvider>
           <Routing />
